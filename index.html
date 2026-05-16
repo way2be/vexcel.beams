@@ -1,11 +1,443 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Vexcel Beams - Your #1 source for premium services and tools">
+<title>Vexcel Beams | Premium Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#080808;
+    --bg2:#101010;
+    --bg3:#161616;
+    --border:rgba(255,255,255,0.07);
+    --border-h:rgba(255,255,255,0.18);
+    --text:#efefef;
+    --muted:#585858;
+    --muted2:#333;
+    --white:#ffffff;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'DM Sans',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  /* ── NAV ── */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 6%;height:66px;
+    background:rgba(8,8,8,0.88);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .nav-wordmark{
+    font-family:'Syne',sans-serif;font-weight:800;font-size:17px;
+    letter-spacing:-0.4px;color:var(--white);
+  }
+  .nav-links{display:flex;align-items:center;gap:1.8rem}
+  .nav-links a{
+    color:var(--muted);text-decoration:none;font-size:12px;
+    font-weight:500;letter-spacing:0.08em;text-transform:uppercase;
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--white)}
+  .nav-cta{
+    border:1px solid var(--border-h) !important;
+    color:var(--white) !important;
+    padding:7px 18px;border-radius:3px;
+    transition:background .2s !important;
+  }
+  .nav-cta:hover{background:rgba(255,255,255,0.06) !important}
+
+  /* ── HERO ── */
+  .hero{
+    position:relative;z-index:1;
+    min-height:100vh;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    text-align:center;padding:110px 6% 80px;
+  }
+  .hero-bg-v{
+    position:absolute;top:50%;left:50%;
+    transform:translate(-50%,-52%);
+    width:min(780px,95vw);
+    opacity:0.025;pointer-events:none;user-select:none;
+  }
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--border-h);border-radius:100px;
+    padding:5px 16px;font-size:11px;color:var(--muted);
+    font-weight:500;letter-spacing:0.12em;text-transform:uppercase;
+    margin-bottom:2.5rem;
+    animation:fadeUp .5s ease both;
+  }
+  .badge-dot{
+    width:5px;height:5px;border-radius:50%;background:var(--white);
+    animation:blink 2.5s ease infinite;
+  }
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0.15}}
+  .hero h1{
+    font-family:'Syne',sans-serif;font-weight:800;
+    font-size:clamp(68px,11vw,118px);
+    line-height:0.9;letter-spacing:-4px;
+    color:var(--white);margin-bottom:1.8rem;
+    animation:fadeUp .5s .08s ease both;
+  }
+  .hero h1 .outline{
+    display:block;color:transparent;
+    -webkit-text-stroke:1.5px rgba(255,255,255,0.28);
+  }
+  .hero-sub{
+    max-width:490px;font-size:15px;color:var(--muted);
+    line-height:1.8;font-weight:300;margin-bottom:2.5rem;
+    animation:fadeUp .5s .16s ease both;
+  }
+  .hero-actions{
+    display:flex;gap:10px;flex-wrap:wrap;justify-content:center;
+    animation:fadeUp .5s .24s ease both;
+  }
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--white);color:#080808;
+    text-decoration:none;font-weight:600;font-size:12px;
+    letter-spacing:0.06em;text-transform:uppercase;
+    padding:13px 28px;border-radius:3px;
+    transition:opacity .2s,transform .15s;
+  }
+  .btn-primary:hover{opacity:.85;transform:translateY(-1px)}
+  .btn-secondary{
+    display:inline-flex;align-items:center;gap:8px;
+    background:transparent;border:1px solid var(--border-h);
+    color:var(--muted);text-decoration:none;font-weight:500;
+    font-size:12px;letter-spacing:0.06em;text-transform:uppercase;
+    padding:13px 28px;border-radius:3px;
+    transition:color .2s,border-color .2s,transform .15s;
+  }
+  .btn-secondary:hover{color:var(--white);border-color:rgba(255,255,255,0.35);transform:translateY(-1px)}
+  .hero-stats{
+    display:flex;gap:4rem;margin-top:5rem;
+    animation:fadeUp .5s .32s ease both;
+  }
+  .stat-num{
+    display:block;font-family:'Syne',sans-serif;
+    font-weight:700;font-size:28px;color:var(--white);
+    letter-spacing:-1px;
+  }
+  .stat-label{
+    font-size:10px;color:var(--muted2);
+    text-transform:uppercase;letter-spacing:0.12em;margin-top:3px;
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+  /* ── RULE ── */
+  .rule{width:100%;height:1px;background:var(--border);position:relative;z-index:1}
+
+  /* ── SECTION ── */
+  section{position:relative;z-index:1;padding:96px 6%}
+  .eyebrow{
+    font-size:10px;font-weight:600;letter-spacing:0.16em;
+    text-transform:uppercase;color:var(--muted);
+    margin-bottom:14px;display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:'';display:block;width:18px;height:1px;background:var(--muted2)}
+  .section-title{
+    font-family:'Syne',sans-serif;font-weight:700;
+    font-size:clamp(34px,4.5vw,52px);letter-spacing:-1.8px;
+    color:var(--white);line-height:1.02;margin-bottom:14px;
+  }
+  .section-desc{
+    color:var(--muted);font-size:14px;max-width:460px;
+    line-height:1.8;font-weight:300;margin-bottom:3.5rem;
+  }
+
+  /* ── GRID ── */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    border:1px solid var(--border);
+    border-radius:6px;overflow:hidden;
+  }
+  .service-card{
+    background:var(--bg2);
+    padding:32px 28px;text-decoration:none;
+    display:flex;flex-direction:column;
+    transition:background .2s;position:relative;
+    border-right:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .service-card:hover{background:var(--bg3)}
+  .service-card.featured::after{
+    content:'Featured';
+    position:absolute;top:20px;right:20px;
+    font-size:10px;font-weight:600;
+    letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--muted2);
+    padding:3px 9px;border-radius:100px;
+  }
+
+  /* ── ICON ── */
+  .card-icon{
+    width:38px;height:38px;margin-bottom:20px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .card-icon svg{width:100%;height:100%}
+
+  .card-title{
+    font-family:'Syne',sans-serif;font-weight:700;
+    font-size:16px;color:var(--white);
+    letter-spacing:-0.2px;margin-bottom:8px;
+  }
+  .card-desc{
+    font-size:13px;color:var(--muted);
+    line-height:1.65;flex:1;margin-bottom:22px;font-weight:300;
+  }
+  .card-link{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:11px;font-weight:500;
+    letter-spacing:0.07em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;transition:color .2s;
+  }
+  .card-link .arr{transition:transform .2s}
+  .service-card:hover .card-link{color:var(--white)}
+  .service-card:hover .arr{transform:translateX(4px)}
+
+  /* ── FOOTER ── */
+  footer{
+    position:relative;z-index:1;
+    background:var(--bg2);border-top:1px solid var(--border);
+    padding:34px 6%;display:flex;align-items:center;
+    justify-content:space-between;flex-wrap:wrap;gap:18px;
+  }
+  .footer-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+  .footer-wm{
+    font-family:'Syne',sans-serif;font-weight:700;
+    font-size:15px;color:var(--white);letter-spacing:-0.3px;
+  }
+  .footer-links{display:flex;gap:20px}
+  .footer-links a{
+    font-size:11px;color:var(--muted);text-decoration:none;
+    letter-spacing:0.07em;text-transform:uppercase;transition:color .2s;
+  }
+  .footer-links a:hover{color:var(--white)}
+  .footer-copy{font-size:11px;color:var(--muted2)}
+
+  @media(max-width:600px){
+    .nav-links{display:none}
+    .hero-stats{gap:2rem}
+    footer{flex-direction:column;align-items:flex-start}
+    .services-grid{grid-template-columns:1fr}
+  }
+</style>
 </head>
 <body>
-    
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <!-- V mark — geometric notched chevron matching uploaded logo -->
+    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 5H7L15 22L19.5 13L17.5 9.5L21 5H27L15 28L3 5Z" fill="white"/>
+      <path d="M21 5L19.5 8L23.5 5H21Z" fill="white" opacity="0.45"/>
+      <path d="M19.5 8L21 5H27L24 10.5L19.5 8Z" fill="white"/>
+    </svg>
+    <span class="nav-wordmark">Vexcel Beams</span>
+  </a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#features">Features</a>
+    <a href="#about">About</a>
+    <a href="https://discord.gg/vAxJnP6Pnt" class="nav-cta">Join Discord</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <!-- giant watermark V -->
+  <svg class="hero-bg-v" viewBox="0 0 700 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 30H80L350 520L620 30H680L350 560L20 30Z" fill="white"/>
+    <path d="M480 30L440 100L540 30H480Z" fill="white" opacity="0.4"/>
+    <path d="M440 100L480 30H680L580 170L440 100Z" fill="white"/>
+  </svg>
+
+  <div class="hero-badge"><div class="badge-dot"></div>#1 Gen Sites</div>
+  <h1>Vexcel<span class="outline">Beams</span></h1>
+  <p class="hero-sub">We are the best service provider out there. Premium tools and services for all your needs.</p>
+  <div class="hero-actions">
+    <a href="https://discord.gg/vAxJnP6Pnt" class="btn-primary">
+      Join Discord
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5H9.5M6.5 2.5L9.5 5.5L6.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="#services" class="btn-secondary">View Services</a>
+  </div>
+  <div class="hero-stats">
+    <div><span class="stat-num">99.9%</span><span class="stat-label">Uptime</span></div>
+    <div><span class="stat-num">24/7</span><span class="stat-label">Support</span></div>
+  </div>
+</div>
+
+<div class="rule"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="eyebrow">Services</div>
+  <h2 class="section-title">Our Services</h2>
+  <p class="section-desc">Explore our premium services designed to meet all your needs with reliability and excellence.</p>
+
+  <div class="services-grid">
+
+    <!-- ASTRAL — 4-point star -->
+    <div class="service-card featured">
+      <div class="card-icon">
+        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 3L21.8 16.2L35 19L21.8 21.8L19 35L16.2 21.8L3 19L16.2 16.2L19 3Z" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
+          <circle cx="19" cy="19" r="2.5" fill="white" opacity="0.25"/>
+        </svg>
+      </div>
+      <div class="card-title">Astral</div>
+      <div class="card-desc">Create your custom Astral site with the best features and sites.</div>
+      <a href="https://app.beamse.pro/gen/authenticate" class="card-link">
+        Create Your Site
+        <svg class="arr" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5H9.5M6.5 2.5L9.5 5.5L6.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <!-- IMMORTAL — infinity -->
+    <div class="service-card featured">
+      <div class="card-icon">
+        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 19C7 15.69 9.69 13 13 13C16.31 13 17.5 15 19 17C20.5 19 21.69 21 25 21C28.31 21 31 18.31 31 15C31 11.69 28.31 9 25 9C21.69 9 20.5 11 19 13" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M31 19C31 22.31 28.31 25 25 25C21.69 25 20.5 23 19 21C17.5 19 16.31 17 13 17C9.69 17 7 19.69 7 23C7 26.31 9.69 29 13 29C16.31 29 17.5 27 19 25" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="card-title">Immortal</div>
+      <div class="card-desc">Create your custom Immortal site with premium features and templates.</div>
+      <a href="https://immortal.st/?code=MDg2NDIwODE3NDA2ODU1MzQzMw==" class="card-link">
+        Create Your Site
+        <svg class="arr" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5H9.5M6.5 2.5L9.5 5.5L6.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <!-- SHOCKIFY — lightning bolt -->
+    <div class="service-card featured">
+      <div class="card-icon">
+        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 4L10 21H19L16 34L28 17H19L22 4Z" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M22 4L19 17H28L16 34L19 21H10L22 4Z" fill="white" opacity="0.08"/>
+        </svg>
+      </div>
+      <div class="card-title">Shockify</div>
+      <div class="card-desc">Create your custom Shockify site with premium features and templates.</div>
+      <a href="https://shockify.st/?code=NTg0NDIzNDE5NTg4OTgwNTYwMg==" class="card-link">
+        Create Your Site
+        <svg class="arr" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5H9.5M6.5 2.5L9.5 5.5L6.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <!-- SPLUNK — node graph -->
+    <div class="service-card featured">
+      <div class="card-icon">
+        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="19" cy="9" r="3" stroke="white" stroke-width="1.4"/>
+          <circle cx="9" cy="27" r="3" stroke="white" stroke-width="1.4"/>
+          <circle cx="29" cy="27" r="3" stroke="white" stroke-width="1.4"/>
+          <line x1="19" y1="12" x2="9" y2="24" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="19" y1="12" x2="29" y2="24" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="12" y1="27" x2="26" y2="27" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="card-title">Splunk</div>
+      <div class="card-desc">Create your custom Splunk site with premium features and templates.</div>
+      <a href="https://app.splunk.me" class="card-link">
+        Create Your Site
+        <svg class="arr" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5H9.5M6.5 2.5L9.5 5.5L6.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <!-- BYPASS TOOL — shield with slash -->
+    <div class="service-card">
+      <div class="card-icon">
+        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 5L31 10V21C31 27.5 25.5 33 19 34.5C12.5 33 7 27.5 7 21V10L19 5Z" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
+          <line x1="13" y1="25" x2="25" y2="13" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="card-title">Bypass Tool</div>
+      <div class="card-desc">Advanced bypass tool for various platforms and services.</div>
+      <a href="https://rbxbypasser.com/d/start" class="card-link">
+        Access Tool
+        <svg class="arr" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5H9.5M6.5 2.5L9.5 5.5L6.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <!-- GAMBLING — diamond gem -->
+    <div class="service-card">
+      <div class="card-icon">
+        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 5L34 15L19 34L4 15L19 5Z" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
+          <line x1="4" y1="15" x2="34" y2="15" stroke="white" stroke-width="1.4"/>
+          <line x1="13" y1="5" x2="9" y2="15" stroke="white" stroke-width="1" opacity="0.35"/>
+          <line x1="25" y1="5" x2="29" y2="15" stroke="white" stroke-width="1" opacity="0.35"/>
+          <line x1="9" y1="15" x2="19" y2="34" stroke="white" stroke-width="1" opacity="0.35"/>
+          <line x1="29" y1="15" x2="19" y2="34" stroke="white" stroke-width="1" opacity="0.35"/>
+          <line x1="19" y1="5" x2="19" y2="34" stroke="white" stroke-width="1" opacity="0.35"/>
+        </svg>
+      </div>
+      <div class="card-title">Gambling Site</div>
+      <div class="card-desc">Gambling site for RBX with secure transactions and fair odds.</div>
+      <a href="https://bloxflip.com/" class="card-link">
+        Start Playing
+        <svg class="arr" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5H9.5M6.5 2.5L9.5 5.5L6.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <!-- HYPERLINK — chain link -->
+    <div class="service-card">
+      <div class="card-icon">
+        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 23L22 17" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M11 21L9 23C6.79 25.21 6.79 28.79 9 31C11.21 33.21 14.79 33.21 17 31L21 27C23.21 24.79 23.21 21.21 21 19L20 18" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M27 17L29 15C31.21 12.79 31.21 9.21 29 7C26.79 4.79 23.21 4.79 21 7L17 11C14.79 13.21 14.79 16.79 17 19L18 20" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="card-title">Hyperlink</div>
+      <div class="card-desc">Premium hyperlink tool with advanced tracking and analytics.</div>
+      <a href="https://www.rblx.asia/" class="card-link">
+        Access Tool
+        <svg class="arr" width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5H9.5M6.5 2.5L9.5 5.5L6.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="/" class="footer-logo">
+    <svg width="22" height="22" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 5H7L15 22L19.5 13L17.5 9.5L21 5H27L15 28L3 5Z" fill="white"/>
+      <path d="M19.5 8L21 5H27L24 10.5L19.5 8Z" fill="white"/>
+    </svg>
+    <span class="footer-wm">Vexcel Beams</span>
+  </a>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="https://discord.gg/vAxJnP6Pnt">Discord</a>
+    <a href="#">Terms</a>
+  </div>
+  <span class="footer-copy">© 2026 Vexcel Beams. All rights reserved.</span>
+</footer>
+
 </body>
 </html>
